@@ -1,4 +1,9 @@
 import React from 'react';
+import { ButtonsGroup } from 'watson-react-components';
+import { Icon, Colors } from 'watson-react-components';
+// const Icon = require('test/components/Icon');
+// import { Icon } from 'watson-react-components';
+// const WebsterIcons = require('aprilwebster-react-components');
 
 const ConversationItem = React.createClass({
   displayName: 'ConversationItem',
@@ -6,11 +11,18 @@ const ConversationItem = React.createClass({
   propTypes: {
     //eslint-disable-next-line
     utterance: React.PropTypes.object.isRequired,
+    //tone_analyzer_response: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
     return {
       utterance: '',
+    };
+  },
+
+  getInitialState() {
+    return {
+      vote: null,
     };
   },
 
@@ -23,6 +35,17 @@ const ConversationItem = React.createClass({
       firstTone.tone === 'anxious' ||
       firstTone.tone === 'impolite')
     );
+  },
+
+  test() {
+    console.log('clicked');
+    // console.log(score);
+    // console.log(vote);
+  },
+
+  logVote(vote) {
+    console.log('vote:');
+    console.log(vote);
   },
 
   render() {
@@ -49,15 +72,30 @@ const ConversationItem = React.createClass({
           { tones.length === 0 ?
             <div className="tone_text">{ 'None' }</div> :
             tones.map(t => (
-              <div key={`${t.tone}-${t.score}`}>
+              <div className="tone_results" key={`${t.tone}-${t.score}`}>
                 <div
                   className={this.isFirstToneNegative(tones) ? 'tone_text negative' : 'tone_text'}
                 >{t.tone}
                 </div>
-                <div
-                  className={this.isFirstToneNegative(tones) ? 'tone_score negative' : 'tone_score'}
-                >{parseFloat(t.score).toFixed(2)}
-                </div>
+                {/*
+                <span className="voteicon">👍</span>
+                <span className="voteicon">👎</span>
+                */}
+                <ButtonsGroup
+                  type="radio"  // radio, button, or checkbox
+                  name="radio-buttons"
+                  onClick={e => console.log('clicked', e)}
+                  onChange={e => console.log('changed', e)}
+                  buttons={[{
+                    value: 1,
+                    id: 'vote-thumbsup',  // id's must be unique across the entire page. Default value is name-value
+                    text: 'agree',
+                  }, {
+                    value: 2,
+                    id: 'vote',
+                    text: 'vote-thumbsdown',
+                  }]}
+                />
               </div>
             ))}
         </div>
