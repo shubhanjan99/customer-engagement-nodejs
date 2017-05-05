@@ -11,12 +11,14 @@ const ConversationItem = React.createClass({
   propTypes: {
     //eslint-disable-next-line
     utterance: React.PropTypes.object.isRequired,
+    utterance_id: React.PropTypes.number.isRequired,
     //tone_analyzer_response: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
     return {
       utterance: '',
+      utterance_id: '',
     };
   },
 
@@ -37,8 +39,8 @@ const ConversationItem = React.createClass({
     );
   },
 
-  test() {
-    console.log('clicked');
+  test(e, tone) {
+    console.log('clicked '.concat(tone));
     // console.log(score);
     // console.log(vote);
   },
@@ -71,8 +73,9 @@ const ConversationItem = React.createClass({
         <div className="score_container">
           { tones.length === 0 ?
             <div className="tone_text">{ 'None' }</div> :
-            tones.map(t => (
+            tones.map((t, i) => (
               <div className="tone_results" key={`${t.tone}-${t.score}`}>
+
                 <div
                   className={this.isFirstToneNegative(tones) ? 'tone_text negative' : 'tone_text'}
                 >{t.tone}
@@ -82,18 +85,18 @@ const ConversationItem = React.createClass({
                 <span className="voteicon">👎</span>
                 */}
                 <ButtonsGroup
-                  type="radio"  // radio, button, or checkbox
-                  name="radio-buttons"
-                  onClick={e => console.log('clicked', e)}
-                  onChange={e => console.log('changed', e)}
+                  type="radio"
+                  name={'utterance'.concat('-', this.props.utterance_id, '-', i)}
+                  onClick={e => this.test(e, t.tone)}
+                  // onChange={}
                   buttons={[{
-                    value: 1,
-                    id: 'vote-thumbsup',  // id's must be unique across the entire page. Default value is name-value
+                    value: 0,
+                    id: 'utterance'.concat('-', this.props.utterance_id, '-', i, '-', t.tone, '-true'),
                     text: 'agree',
                   }, {
-                    value: 2,
-                    id: 'vote',
-                    text: 'vote-thumbsdown',
+                    value: 1,
+                    id: 'utterance'.concat('-', this.props.utterance_id, '-', i, '-', t.tone, '-false'),
+                    text: 'disagree',
                   }]}
                 />
               </div>
