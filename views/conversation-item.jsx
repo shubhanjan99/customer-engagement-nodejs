@@ -40,7 +40,7 @@ const ConversationItem = React.createClass({
   },
 
   test(e, tone) {
-    console.log('clicked '.concat(tone));
+    console.log('voted: '.concat(this.props.utterance.statement.text, ' ', tone, ' ', e.target.value));
     // console.log(score);
     // console.log(vote);
   },
