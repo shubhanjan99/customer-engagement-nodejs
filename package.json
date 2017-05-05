@@ -24,6 +24,7 @@
     "babelify": "^7.3.0",
     "body-parser": "^1.16.0",
     "cf-deployment-tracker-client": "^0.1.2",
+    "cloudant": "^1.7.1",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "express-browserify": "^1.0.2",
@@ -43,6 +44,7 @@
     "uglifyify": "^3.0.4",
     "underscore": "^1.8.3",
     "watson-react-components": "^0.6.3",
+    "aprilwebster-react-components": "https://github.com/aprilwebster/react-components",
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
@@ -65,6 +67,7 @@
     "eslint-plugin-react": "^6.9.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
+    "path": "^0.12.7",
     "phantomjs-prebuilt": "^2.1.14",
     "supertest": "^2.0.1"
   },
