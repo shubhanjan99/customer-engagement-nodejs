@@ -2,12 +2,6 @@
   margin: 4rem auto 0rem;
 }
 
-.thumbsdown_button{
-  background: url(/images/thumbs-down-off.png) no-repeat;
-  cursor: pointer;
-  border: none;
-}
-
 .error_message {
   float: left;
 }
@@ -120,6 +114,11 @@
   float: left;
   width: 25%;
   margin-top: 3px;
+}
+
+.tone_results {
+  display: flex;
+  align-items: center;
 }
 
 .tone_text {
